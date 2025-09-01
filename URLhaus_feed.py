@@ -10,7 +10,7 @@ lines = resp.text.splitlines()
 
 reader = csv.DictReader(lines)
 
-with open("urlhaus_feed.txt", "w", encoding="utf-8") as f:
+with open("URLhaus_feed.txt", "w", encoding="utf-8") as f:
     for row in reader:
         url = row.get("url")
         if url:
