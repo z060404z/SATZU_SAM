@@ -1,4 +1,4 @@
-name: URLhaus_Feed
+name: URLhaus_feed
 
 on:
   schedule:
