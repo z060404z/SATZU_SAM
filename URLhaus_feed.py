@@ -1,6 +1,5 @@
 import requests
 import csv
-import sys
 
 csv_url = "https://urlhaus.abuse.ch/downloads/csv_recent/"
 
@@ -9,17 +8,13 @@ try:
     resp.raise_for_status()
 except Exception as e:
     print("抓取 CSV 失敗:", e)
-    sys.exit(1)
+    exit(1)
 
 lines = resp.text.splitlines()
-if len(lines) == 0:
-    print("CSV 內容為空")
-    sys.exit(1)
-
 reader = csv.DictReader(lines)
 
 urls_written = 0
-with open("urlhaus_feed.txt", "w", encoding="utf-8") as f:
+with open("URLhaus_feed.txt", "w", encoding="utf-8") as f:
     for row in reader:
         url = row.get("url")
         if url:
@@ -27,5 +22,3 @@ with open("urlhaus_feed.txt", "w", encoding="utf-8") as f:
             urls_written += 1
 
 print(f"已生成 URLhaus_feed.txt，共寫入 {urls_written} 條 URL")
-if urls_written == 0:
-    sys.exit(1)
