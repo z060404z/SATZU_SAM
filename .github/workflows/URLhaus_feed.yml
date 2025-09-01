@@ -25,7 +25,7 @@ jobs:
 
       - name: Check if TXT exists
         run: |
-          if [ ! -f urlhaus_feed.txt ]; then
+          if [ ! -f URLhaus_feed.txt ]; then
             echo "TXT file not found!"
             exit 1
           fi
