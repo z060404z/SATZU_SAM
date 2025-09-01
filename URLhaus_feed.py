@@ -30,7 +30,7 @@ def convert_csv_to_txt(csv_filepath, txt_filepath):
     except Exception as e:
         print(f"發生錯誤：{e}")
 
-csv_file = 'https://urlhaus.abuse.ch/downloads/csv_recent/'
+csv_url = 'https://urlhaus.abuse.ch/downloads/csv_recent/'
 txt_file = 'URLhaus_feed.txt'
 
 convert_csv_to_txt(csv_file, txt_file)
