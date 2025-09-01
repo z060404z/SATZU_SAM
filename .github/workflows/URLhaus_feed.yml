@@ -2,7 +2,7 @@ name: URLhaus_feed
 
 on:
   schedule:
-    - cron: '0 16,22,4,10 * * *'  # UTC, 對應 UTC+8 的 0,6,12,18
+    - cron: '0 16,22,4,10 * * *'  # UTC 時區，對應 UTC+8 的 0,6,12,18
   workflow_dispatch:
 
 jobs:
@@ -12,35 +12,16 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Install Python
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Generate TXT feed from URLhaus CSV
-        run: |
-          pip install requests
-          python - << 'EOF'
-import requests
-import csv
+      - name: Install requests
+        run: pip install requests
 
-# URLhaus CSV 最近惡意 URL
-csv_url = "https://urlhaus.abuse.ch/downloads/csv_recent/"
-
-resp = requests.get(csv_url)
-resp.raise_for_status()
-lines = resp.text.splitlines()
-
-reader = csv.DictReader(lines)
-
-with open("urlhaus_feed.txt", "w", encoding="utf-8") as f:
-    for row in reader:
-        url = row.get("url")
-        if url:
-            f.write(url + "\n")
-
-print("已生成 URLhaus_feed.txt")
-EOF
+      - name: Run Python script
+        run: python generate_urlhaus.py
 
       - name: Commit and push feed
         run: |
