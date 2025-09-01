@@ -33,4 +33,4 @@ def convert_csv_to_txt(csv_filepath, txt_filepath):
 csv_url = 'https://urlhaus.abuse.ch/downloads/csv_recent/'
 txt_file = 'URLhaus_feed.txt'
 
-convert_csv_to_txt(csv_file, txt_file)
+convert_csv_to_txt(csv_url, txt_file)
