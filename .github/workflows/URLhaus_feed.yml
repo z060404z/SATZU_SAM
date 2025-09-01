@@ -1,8 +1,8 @@
-name: URLhaus Feed
+name: URLhaus_feed
 
 on:
   schedule:
-    - cron: '0 16,22,4,10 * * *'  # UTC 時區，對應 UTC+8 的 0,6,12,18
+    - cron: '0 16,22,4,10 * * *'  # UTC, 對應 UTC+8 的 0,6,12,18
   workflow_dispatch:
 
 jobs:
@@ -17,10 +17,10 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Generate txt feed from URLhaus CSV
+      - name: Generate TXT feed from URLhaus CSV
         run: |
           pip install requests
-          python - <<EOF
+          python - << 'EOF'
 import requests
 import csv
 
@@ -33,11 +33,11 @@ lines = resp.text.splitlines()
 
 reader = csv.DictReader(lines)
 
-with open("URLhaus_feed.txt", "w", encoding="utf-8") as f:
+with open("urlhaus_feed.txt", "w", encoding="utf-8") as f:
     for row in reader:
         url = row.get("url")
         if url:
-            f.write(url + "\\n")
+            f.write(url + "\n")
 
 print("已生成 URLhaus_feed.txt")
 EOF
