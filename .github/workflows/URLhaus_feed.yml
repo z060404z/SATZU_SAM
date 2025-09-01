@@ -2,7 +2,7 @@ name: URLhaus_feed
 
 on:
   schedule:
-    - cron: '0 16,22,4,10 * * *'  # UTC, 對應 UTC+8 的 0,6,12,18
+    - cron: '0 16,22,4,10 * * *'
   workflow_dispatch:
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
         run: pip install requests
 
       - name: Run Python script
-        run: python generate_urlhaus.py   # <- 執行根目錄的 py 檔
+        run: python URLhaus_feed.py
 
       - name: Commit and push feed
         run: |
