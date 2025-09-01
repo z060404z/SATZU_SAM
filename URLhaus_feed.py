@@ -2,13 +2,6 @@ import csv
 import os
 
 def convert_csv_to_txt(csv_filepath, txt_filepath):
-    """
-    從 CSV 檔案讀取 URL，並將它們寫入 TXT 檔案中。
-
-    Args:
-        csv_filepath (str): 輸入的 CSV 檔案路徑。
-        txt_filepath (str): 輸出的 TXT 檔案路徑。
-    """
     try:
         with open(csv_filepath, 'r', encoding='utf-8') as infile, \
              open(txt_filepath, 'w', encoding='utf-8') as outfile:
