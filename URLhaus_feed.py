@@ -3,12 +3,8 @@ import csv
 
 csv_url = "https://urlhaus.abuse.ch/downloads/csv_recent/"
 
-try:
-    resp = requests.get(csv_url)
-    resp.raise_for_status()
-except Exception as e:
-    print("抓取 CSV 失敗:", e)
-    exit(1)
+resp = requests.get(csv_url)
+resp.raise_for_status()
 
 lines = resp.text.splitlines()
 
